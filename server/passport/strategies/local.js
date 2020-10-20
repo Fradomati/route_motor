@@ -1,7 +1,7 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("../../models/User_Model");
-const { hashPassword, checkHashed } = require("../../lib/hashing");
+const { hashPassword, checkHashed } = require("../../lib/hashing.js");
 
 passport.use(
     new LocalStrategy({ usernameField: "email" }, async (email, password, done) => {
