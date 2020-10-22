@@ -14,6 +14,7 @@ const RoutesModel = new Schema(
         duration: Number,
         distance: Number,
         level: String,
+        difficulty: String,
         // Style: offRoad, tranquilo, turismo, enduro, curvas suave, curvas fuerte...
         recommended_style: [{ type: String }],
         // custom styles
@@ -27,11 +28,11 @@ const RoutesModel = new Schema(
         appleMaps_url_route: String,
         other_url_route: String,
         comments: { type: Schema.Types.ObjectId, ref: "Comments" },
-        ratings:,
-        numberOfVisited:,
-        numberOfRoutesDone:,
-        stopsRecommended:,
-        localsRecommended:,
+        ratings: [{ type: Schema.Types.ObjectId, ref: "User" }],
+        numberOfVisited: Number,
+        numberOfRoutesDone: Number,
+        stopsRecommended: [{ type: Schema.Types.ObjectId, ref: "StopsPoints" }],
+        localsRecommended: [{ type: Schema.Types.ObjectId, ref: "LocalPoints" }],
 
     },
     {
