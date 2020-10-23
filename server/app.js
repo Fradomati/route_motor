@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config({ path: ".env" });
 
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -9,6 +9,8 @@ const path = require("path");
 const cors = require("cors");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
+
+console.log(process.env.MONGODB_URL)
 
 mongoose
     .connect(process.env.MONGODB_URL, {
