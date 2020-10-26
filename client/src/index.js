@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom"
-import { App } from "./index.js"
+import { App } from "./App.js"
 
 document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById("root");

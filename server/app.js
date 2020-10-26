@@ -10,10 +10,10 @@ const cors = require("cors");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 
-console.log(process.env.MONGODB_URL)
+console.log(process.env.DBURL)
 
 mongoose
-    .connect(process.env.MONGODB_URL, {
+    .connect(process.env.DBURL, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })

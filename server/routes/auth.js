@@ -115,6 +115,11 @@ router.post("/modifyProfile", async (req, res) => {
 
 })
 
+router.post("/completeProfile", (req, res) => {
+    // Data necessary to have a complete profile like a "Bike", "Location", etc
+
+})
+
 router.get("/whoame", (req, res) => {
     if (req.isAuthenticated()) {
         return res.json(
