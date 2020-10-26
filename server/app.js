@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config({ path: ".env" });
 
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -10,8 +10,10 @@ const cors = require("cors");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 
+console.log(process.env.DBURL)
+
 mongoose
-    .connect(process.env.MONGODB_URL, {
+    .connect(process.env.DBURL, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
