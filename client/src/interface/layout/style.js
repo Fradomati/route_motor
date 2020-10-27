@@ -9,5 +9,5 @@ export const GlobalContainer = styled.div`
 
 export const MainContentContainer = styled.div`
     width: 100%;
-    background-color: yellow;
+    background-color: #2145f3;
 `

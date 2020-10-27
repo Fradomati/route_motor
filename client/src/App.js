@@ -9,6 +9,7 @@ import { Layout } from "./interface/layout/index"
 import { Home } from "./pages/home/index"
 //Auth
 import { Login } from "./pages/auth/Login/index"
+import { Signup } from "./pages/auth/Signup/index"
 
 // LIB
 // import { withAuthentication } from "../lib/Authentication/withAuthentication"
@@ -25,6 +26,7 @@ export const App =
                     <Switch>
                         <Route path="/" exact component={Home} />
                         <Route path="/login" exact component={Login} />
+                        <Route path="/signup" exact component={Signup} />
                     </Switch>
                 </Layout>
             </Router>
