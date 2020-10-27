@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 import { ContainerGlobal, ContainerPreForm, ContainerForm, InputAuth } from "../styles"
 
 
-export const Login = () => {
+export const Signup = () => {
 
     const { register, handleSubmit, errors } = useForm(
         {
@@ -33,10 +33,10 @@ export const Login = () => {
     return (
         <ContainerGlobal>
             <ContainerPreForm>
-                <p>Iniciar Sesión</p>
-                <Link to="/signup">Registro</Link>
+                <Link to="/login">Iniciar Sesión</Link>
+                <p>Registro</p>
                 <ContainerForm onSubmit={handleSubmit(onSubmit)}>
-                    <h2>Iniciar Sesión</h2>
+                    <h2>Registro</h2>
                     {/* {err && (<P>{err}</P>)} */}
                     <InputAuth type="text" placeholder="Email" name="mail" ref={register({
                         required: true,
