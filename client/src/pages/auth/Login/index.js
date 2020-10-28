@@ -1,9 +1,10 @@
 import React from "react"
 import { useForm } from "react-hook-form"
 import { Link } from "react-router-dom"
+import { loginFn } from "../../../services/Auth_Service"
 
 // Styles
-import { ContainerGlobal, ContainerPreForm, ContainerForm, InputAuth } from "../styles"
+import { ContainerGlobal, ContainerPreForm, ContainerForm, InputAuth, NavAuth, ModuleAuth } from "../styles"
 
 
 export const Login = () => {
@@ -32,9 +33,15 @@ export const Login = () => {
 
     return (
         <ContainerGlobal>
-            <ContainerPreForm>
-                <p>Iniciar Sesión</p>
-                <Link to="/signup">Registro</Link>
+            <ContainerPreForm className="form-login">
+                <NavAuth>
+                    <ModuleAuth className="nav-left">
+                        <p >Iniciar Sesión</p>
+                    </ModuleAuth>
+                    <ModuleAuth>
+                        <Link to="/signup">Registro</Link>
+                    </ModuleAuth>
+                </NavAuth>
                 <ContainerForm onSubmit={handleSubmit(onSubmit)}>
                     <h2>Iniciar Sesión</h2>
                     {/* {err && (<P>{err}</P>)} */}

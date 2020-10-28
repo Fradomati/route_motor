@@ -11,8 +11,6 @@ export const ContainerGlobal = styled.div`
 export const ContainerPreForm = styled.div`
  width: 30vw;
  height: 60vh;
- background-color: pink;
- box-shadow: 0px 0px 17px 7px #ec77b2b8;
 `
 
 export const ContainerForm = styled.form`
@@ -29,4 +27,16 @@ export const InputAuth = styled.input`
     border: 2px solid black;
     box-shadow: 0px 2px 5px #615f5f;
     padding: 0.4em;
+`
+
+export const NavAuth = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+`
+
+export const ModuleAuth = styled.div`
+    width: 50%;
+    text-align: center;
+    padding: 1em 0em;
 `

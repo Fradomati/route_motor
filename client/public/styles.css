@@ -52,3 +52,23 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+/* Specific Css to Details*/
+
+/* Right Line on Auth Nav of Auth Form */
+
+.nav-left {
+	border-right: 1px solid white;
+}
+
+/* Background Color Auth Form to Login or Signup */
+.form-login {
+	background-color: #009688;
+    box-shadow: 0px 0px 17px 7px #009788bd;
+}
+
+.form-signup {
+	
+	background-color: pink;
+	box-shadow: 0px 0px 17px 7px #ec77b2b8;
+}
