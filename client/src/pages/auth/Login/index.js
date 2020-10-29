@@ -15,21 +15,20 @@ export const Login = () => {
         }
     );
 
-    const onSubmit = (data) => {
-        console.log(data)
-    }
 
-    // const onSubmit = async (data) => {
-    //     const responseServer = await loginFn(data);
+    const onSubmit = async (data) => {
+        const responseServer = await loginFn(data);
 
-    //     if (responseServer.status == 417) {
-    //         setErr(responseServer.message)
-    //     } else {
-    //         setUserOn(responseServer)
-    //         localStorage.setItem("sessionOn", true)
-    //         history.push("/")
-    //     }
-    // };
+        if (responseServer.status == 417) {
+            setErr(responseServer.message)
+        } else {
+
+            console.log("Logged")
+            // setUserOn(responseServer)
+            // localStorage.setItem("sessionOn", true)
+            // history.push("/")
+        }
+    };
 
     return (
         <ContainerGlobal>

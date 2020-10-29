@@ -1,5 +1,4 @@
-import axios from "axios"
-console.log("Process.env", process.env.BACKEND_URL)
+import axios from "axios";
 
 export const authService = axios.create({
     baseURL: `${process.env.BACKEND_URL}/auth`,
