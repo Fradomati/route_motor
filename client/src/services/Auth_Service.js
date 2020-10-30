@@ -22,3 +22,8 @@ export const loginFn = async ({ mail, password }) => {
     )
     return response.data
 }
+
+export const whoameFN = async () => {
+    const response = await authService.get("/whoame")
+    return response.data
+}

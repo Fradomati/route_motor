@@ -121,24 +121,11 @@ router.post("/completeProfile", (req, res) => {
 })
 
 router.get("/whoame", (req, res) => {
+    console.log("Hola", req.isAuthenticated())
     if (req.isAuthenticated()) {
-        return res.json(
-            _.pick(req.user, [
-                "_id",
-                "username",
-                "password",
-                "email",
-                "totalTimes",
-                "lastTime",
-                "days",
-                "hours",
-                "refContent",
-                "storeContent",
-                "likesContent"
-            ])
-        );
+        return res.json(req.user);
     } else {
-        return res.status(402).json({ status: "No user session found" });
+        return res.status(403).json({ status: "No user session found" });
     }
 });
 
