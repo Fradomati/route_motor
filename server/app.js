@@ -63,10 +63,10 @@ app.use(
         saveUninitialized: false,
         resave: true,
         cookie: {
-            secure: true,
-            sameSite: "none",
-            httpOnly: false,
-            maxAge: 5184000000 // 60 days 
+            // secure: true,
+            // sameSite: "none",
+            // httpOnly: false,
+            // maxAge: 5184000000 // 60 days 
         },
         store: new MongoStore({ mongooseConnection: mongoose.connection }),
     })
@@ -75,13 +75,13 @@ app.use(
 require("./passport/")(app);
 
 
+const index = require('./routes/index');
+app.use('/', index);
+
 // Login and Signup Route
 const auth = require("./routes/auth");
 app.use("/auth", auth);
 
-
-const index = require('./routes/index');
-app.use('/', index);
 
 
 module.exports = app;
