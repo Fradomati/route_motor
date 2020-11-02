@@ -75,43 +75,53 @@ router.post("/forgotPassWord", async (req, res) => {
 
 router.post("/modifyProfile", async (req, res) => {
     const { id } = req.body
-    const { username, email, password } = req.body
-    if (username != null) {
+    const { username, email, age, language, bio, located } = req.body
+    console.log(username, email, age, language, bio, located)
+    if (username != "") {
         await User.findByIdAndUpdate(
             { _id: id },
             { $set: { username: username } }
         )
 
     }
-    if (email != null) {
+    if (email != "") {
         await User.findByIdAndUpdate(
             { _id: id },
             { $set: { email: email } }
         )
 
     }
-    if (password != null) {
+    if (age != "") {
         await User.findByIdAndUpdate(
             { _id: id },
-            { $set: { password: hashPassword(password) } }
+            { $set: { age: age } }
+        )
+    }
+
+    if (language != "") {
+        await User.findByIdAndUpdate(
+            { _id: id },
+            { $set: { language: language } }
+        )
+    }
+
+    if (located != "") {
+        await User.findByIdAndUpdate(
+            { _id: id },
+            { $set: { located: located } }
+        )
+    }
+
+    if (bio != "") {
+        await User.findByIdAndUpdate(
+            { _id: id },
+            { $set: { bio: bio } }
         )
     }
 
     const changes = await User.findById(id)
 
-    res.json(_.pick(changes, [
-        "_id",
-        "username",
-        "password",
-        "email",
-        "totalTimes",
-        "lastTime",
-        "days",
-        "hours",
-        "refContent",
-        "storeContent",
-        "likesContent"
-    ]))
+    res.json(changes)
 
 })
 
@@ -121,7 +131,6 @@ router.post("/completeProfile", (req, res) => {
 })
 
 router.get("/whoame", (req, res) => {
-    console.log("Hola", req.isAuthenticated())
     if (req.isAuthenticated()) {
         return res.json(req.user);
     } else {
