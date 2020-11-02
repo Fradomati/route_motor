@@ -6,7 +6,7 @@ const UserModel = new Schema(
         username: String,
         password: String,
         email: String,
-        age: Number,
+        age: String,
         bio: String,
         located: String,
         language: String,

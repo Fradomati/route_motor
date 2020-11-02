@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from "react"
 import { UserSessionContext } from "../../../../lib/Authentication/withAuthentication"
 import { useForm } from "react-hook-form"
+import { modifyFN } from "../../../services/Auth_Service"
+import { userAge } from "../../../../lib/Functions/functions"
 
 
 // Styles
@@ -20,7 +22,9 @@ export const Profile = () => {
         }
     );
     const onSubmit = async (data) => {
-        const id = userOn._id
+        const id = userLoaded._id
+        console.log(userAge(data.age))
+        console.log("data", data, id)
         const responseServer = await modifyFN(data, id);
 
         if (responseServer.status == 417) {
@@ -28,10 +32,13 @@ export const Profile = () => {
         } else {
             setUserLoaded(responseServer)
             setEdit(false)
+            console.log("Usuario modificado:", userLoaded)
         }
     };
 
     console.log(userLoaded)
+
+
 
     const change = () => {
         !edit ? setEdit(true) : setEdit(false)
@@ -49,7 +56,7 @@ export const Profile = () => {
                             <HighText>Email</HighText>
                             <p>{userLoaded.email}</p>
                             <HighText>Edad</HighText>
-                            <p>{userLoaded.age}</p>
+                            {userLoaded.age == "" ? (<p>Actualizar</p>) : (<p>{userAge(userLoaded.age)}</p>)}
                             <HighText>Bio</HighText>
                             <p>{userLoaded.bio}</p>
                             <HighText>Idioma</HighText>
@@ -61,27 +68,27 @@ export const Profile = () => {
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <HighText>Nombre</HighText>
                                 <input type="text" placeholder={userLoaded.username} name="username" ref={register({
-                                    required: true
+                                    required: false
                                 })} />
                                 <HighText>Email</HighText>
                                 <input type="text" placeholder={userLoaded.email} name="email" ref={register({
-                                    required: true
+                                    required: false
                                 })} />
                                 <HighText>Edad</HighText>
-                                <input type="text" placeholder={userLoaded.age} name="age" ref={register({
-                                    required: true
+                                <input type="date" placeholder={userLoaded.age} name="age" value={userLoaded.age} ref={register({
+                                    required: false
                                 })} />
                                 <HighText>Bio</HighText>
-                                <input type="text" placeholder={userLoaded.bio} name="bio" ref={register({
-                                    required: true
+                                <input type="text" placeholder={userLoaded.bio} name="bio" value={userLoaded.bio} ref={register({
+                                    required: false
                                 })} />
                                 <HighText>Idioma</HighText>
                                 <input type="text" placeholder={userLoaded.language} name="language" ref={register({
-                                    required: true
+                                    required: false
                                 })} />
                                 <HighText>Localidad</HighText>
                                 <input type="text" placeholder={userLoaded.located} name="located" ref={register({
-                                    required: true
+                                    required: false
                                 })} />
                                 <p></p>
                                 <input type="submit" />

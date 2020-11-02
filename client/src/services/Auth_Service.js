@@ -29,24 +29,8 @@ export const whoameFN = async () => {
 }
 
 export const modifyFN = async (data, id) => {
-
-    if (data.username) {
-        const username = data.username
-        const response = await authService.post("/modifyProfile", { id, username })
-        return response.data
-    }
-
-    if (data.mail) {
-        let mail = data.mail
-        let email = mail.toLowerCase()
-        const response = await authService.post("/modifyProfile", { id, email })
-        return response.data
-    }
-
-    if (data.password) {
-        const password = data.password
-        const response = await authService.post("/modifyProfile", { id, password })
-        return response.data
-    }
+    const { username, email, age, language, bio, located } = data
+    const response = await authService.post("/modifyProfile", { id, username, email, age, language, bio, located })
+    return response.data
 
 }
