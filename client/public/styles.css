@@ -73,3 +73,8 @@ table {
 	background-color: pink;
 	box-shadow: 0px 0px 17px 7px #ec77b2b8;
 }
+
+.mapContainer {
+	width: 100vw;
+	height: 100vh;
+  }
