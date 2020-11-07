@@ -21,6 +21,24 @@
     "@babel/core": "^7.9.6",
     "parcel-bundler": "^1.12.4"
   },
+  "//": [
+    "Solution to problem with Mapbox and Parcel... ---->"
+  ],
+  "browserslist": {
+    "production": [
+      "last 3 chrome versions",
+      "last 3 firefox versions",
+      "last 3 safari versions"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "//2": [
+    "<---- Solution to problem with Mapbox and Parcel..."
+  ],
   "scripts": {
     "start": "serve",
     "dev": "parcel public/index.html",
