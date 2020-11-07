@@ -1,4 +1,4 @@
-import { apiMaps } from "./Connections"
+import { apiMaps, apiGeocoding } from "./Connections"
 
 
 
@@ -18,3 +18,11 @@ export const getRoute = async (coords) => {
     );
     return response;
 };
+
+export const getCoords = async (place) => {
+    const response = await apiGeocoding.get(
+        `/${place}.json?access_token=${token}`
+    )
+
+    return response
+}

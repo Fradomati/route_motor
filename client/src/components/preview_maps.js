@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import { getRoute } from "../services/Map_Service";
+import { MapsEmbebed } from "./test_map"
 
 
 mapboxgl.accessToken = process.env.TOKEN_MAPBOX
@@ -61,5 +62,10 @@ export const PreviewMaps = (props) => {
         })
     }, []);
 
-    return <div ref={test} className="mapContainer"></div>;
+    return (
+        <div>
+            <MapsEmbebed />
+            <div ref={test} className="mapContainer"></div>;
+        </div>
+    )
 };
