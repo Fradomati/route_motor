@@ -11,7 +11,7 @@ export const PreviewMaps = (props) => {
     const coor = [
         [-3.7, 40.37],
         [-3.7, 40.38],
-        [-3.7, 40.39]
+        [-4.5875918, 41.0662344]
     ];
 
     useEffect(() => {
