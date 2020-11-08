@@ -18,3 +18,18 @@ export const userAge = (birthday) => {
 }
 
 
+export const urlToCoords = (url) => {
+    let arr = url.split("dir/")[1].split("data")[0].split("/")
+    let arrCleaned = []
+    arr.forEach(e => {
+        if (e != "" && e != "am=t") {
+            arrCleaned.push(e)
+        }
+    })
+    let lastElement = arrCleaned[arrCleaned.length - 1].split("@")[1].split("z")[0]
+    arrCleaned.pop()
+    arrCleaned.push(lastElement)
+
+    return arrCleaned
+}
+
