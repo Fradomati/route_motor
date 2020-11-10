@@ -14,7 +14,52 @@ export const MapsEmbebed = () => {
         }
     );
 
-    const filterURL = async (data) => {
+    const doCoords = async (arr) => {
+        // const coords = []
+
+        // Filtro cada elemento del Array y compruebo si son coordenadas o lugares, luego los paso a coordenadas y los
+        // meto en el array de Coords
+        await Promise.all(arr.map(async (e, index) => {
+
+            // A ver si puedo hacer algo con el Index para ordenar las coordenadas tal y como vienen...
+            // Check if "e" is number or places
+            if (parseInt(e.split("")[0]) >= 0) {
+                // Number
+                let coordPlace = ""
+                e.split(",").forEach(i => {
+                    // Organize Coords Lat and Lng like to order Mapbox
+                    coordPlace == "" ? coordPlace = i : coordPlace = `${i},` + coordPlace
+                })
+                console.log(e.split(","), index)
+
+                return coordPlace
+                // coords[index] = coordPlace
+            } else {
+                // Place
+                const response = await getCoords(e)
+                const place = response.data.features
+                let coordPlace = ""
+                place[0].center.forEach(e => {
+                    coordPlace == "" ? coordPlace = `${e},` : coordPlace = coordPlace + e
+                })
+                console.log(e.split(","), index)
+
+                return coordPlace
+                // coords[index] = coordPlace
+
+
+            }
+        })).then(e => {
+            console.log("Then", e)
+            setMap(e)
+        })
+            .catch(e => console.log("Catch", e))
+
+        // return coords
+
+    }
+
+    const filterURL = (data) => {
 
         const coordsOfPlaces = []
         let centerOfPlaces = null
@@ -22,40 +67,10 @@ export const MapsEmbebed = () => {
 
         console.log(arrPlaces)
 
-        const doCoords = (arr) => {
-            const coords = []
+        const coords = doCoords(arrPlaces)
+        // setMap(coords)
 
-
-            arrPlaces.forEach(e => {
-
-                console.log(parseInt(e.split("")[1]))
-                if (parseInt(e.split("")[0]) == NaN) {
-                    getCoords(e).then(i => console.log(i))
-                } else {
-                    coords.push(e)
-                }
-            })
-
-            console.log("New", coords)
-
-        }
-
-        doCoords(arrPlaces)
-
-        // Hacer una función aquí que recoja el place y lo transforme en coordenadas --->
-        /*
-        const place = await getCoords(data.place)
-        const places = place.data.features
-        console.log("Place:", places)
-        const namesPlace = []
-        places.forEach(x => {
-            namesPlace.push(x.place_name)
-         })
-         console.log(namesPlace)
- */
-
-        // <----
-
+        // console.log("Cooords!", coords)
 
 
     }
@@ -69,6 +84,9 @@ export const MapsEmbebed = () => {
                 })} />
                 <input type="submit" />
             </form>
+            {map && (<ul>{map.map((e, i) => {
+                return <li key={i}>{e}</li>
+            })}</ul>)}
         </div>
     )
 
