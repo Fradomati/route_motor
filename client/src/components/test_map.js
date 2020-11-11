@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { getCoords } from "../services/Map_Service"
-import { urlToCoords } from "../../lib/Functions/functions"
+import { urlToCoords, arrayOfArrays } from "../../lib/Functions/functions"
+import { PreviewMaps } from "../components/preview_maps"
 
 
-export const MapsEmbebed = () => {
+export const Test_map = () => {
 
     const [map, setMap] = useState()
+    const [mapCoords, setMapCoords] = useState()
 
     const { register, handleSubmit, errors } = useForm(
         {
@@ -21,19 +23,16 @@ export const MapsEmbebed = () => {
         // meto en el array de Coords
         await Promise.all(arr.map(async (e, index) => {
 
-            // A ver si puedo hacer algo con el Index para ordenar las coordenadas tal y como vienen...
             // Check if "e" is number or places
-            if (parseInt(e.split("")[0]) >= 0) {
+            if (parseInt(e.split("")[5]) >= 0) {
                 // Number
                 let coordPlace = ""
                 e.split(",").forEach(i => {
                     // Organize Coords Lat and Lng like to order Mapbox
                     coordPlace == "" ? coordPlace = i : coordPlace = `${i},` + coordPlace
                 })
-                console.log(e.split(","), index)
 
                 return coordPlace
-                // coords[index] = coordPlace
             } else {
                 // Place
                 const response = await getCoords(e)
@@ -42,16 +41,29 @@ export const MapsEmbebed = () => {
                 place[0].center.forEach(e => {
                     coordPlace == "" ? coordPlace = `${e},` : coordPlace = coordPlace + e
                 })
-                console.log(e.split(","), index)
 
                 return coordPlace
-                // coords[index] = coordPlace
 
 
             }
         })).then(e => {
             console.log("Then", e)
-            setMap(e)
+            let result = e
+            // Fix the problem with the last element coords, example: 10,-4,23424, 40,20200 => -4,23424, 40,20200
+            if (e[e.length - 1].split(",").length > 2) {
+                let newValue = null
+                let lastValue = e[e.length - 1].split(",")
+                lastValue.shift()
+                lastValue.forEach(value => newValue == null ? newValue = value + "," : newValue = newValue + value)
+                result[e.length - 1] = newValue
+            }
+            const mapBoxCoords = arrayOfArrays(result)
+            console.log("Final COORDS:", mapBoxCoords)
+            // Pass the Coords to the preview map component 
+            setMapCoords(mapBoxCoords)
+
+            // Nothing
+            setMap(result)
         })
             .catch(e => console.log("Catch", e))
 
@@ -61,16 +73,11 @@ export const MapsEmbebed = () => {
 
     const filterURL = (data) => {
 
-        const coordsOfPlaces = []
-        let centerOfPlaces = null
         const arrPlaces = urlToCoords(data.place)
 
         console.log(arrPlaces)
 
-        const coords = doCoords(arrPlaces)
-        // setMap(coords)
-
-        // console.log("Cooords!", coords)
+        doCoords(arrPlaces)
 
 
     }
@@ -87,6 +94,8 @@ export const MapsEmbebed = () => {
             {map && (<ul>{map.map((e, i) => {
                 return <li key={i}>{e}</li>
             })}</ul>)}
+            <PreviewMaps coords={mapCoords} />
+
         </div>
     )
 
