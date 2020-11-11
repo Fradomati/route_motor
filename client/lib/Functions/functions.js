@@ -33,3 +33,11 @@ export const urlToCoords = (url) => {
     return arrCleaned
 }
 
+export const arrayOfArrays = (array) => {
+    const newArray = []
+    array.forEach(e => {
+        newArray.push(e.split(","))
+    })
+    return newArray
+}
+
