@@ -15,7 +15,7 @@ export const PreviewMaps = (props) => {
     //     [-4.5875918, 41.0662344]
     // ];
     useEffect(() => {
-        if (props.coords) setCoords(props.coords)
+        if (props.coords) setCoords(props.coords.coordinates)
         console.log("PROPOS", props.coords)
     }, [props])
 
@@ -23,8 +23,8 @@ export const PreviewMaps = (props) => {
         const map = new mapboxgl.Map({
             container: mapDiv.current,
             style: "mapbox://styles/mapbox/streets-v11",
-            zoom: 5,
-            center: [-3.7, 40.37]
+            zoom: 6,
+            center: props.coords ? props.coords.center : [-3.7, 40.37]
         });
 
         // If I've coords show the route, else only the map
@@ -60,19 +60,23 @@ export const PreviewMaps = (props) => {
                         "line-cap": "round"
                     },
                     paint: {
-                        "line-color": "#3887be",
+                        "line-color": "red",
                         "line-width": 5,
-                        "line-opacity": 0.75
+                        "line-opacity": 0.85
                     }
                 });
             })
         }
+
+        // Clean when dismount map
+        return () => map.remove()
     }, [coords]);
 
+
     return (
-        <div>
-            {coords && (<div ref={mapDiv} className="mapContainer"></div>)}
-            <div ref={mapDiv} className="mapContainer"></div>;
+        <div >
+            <div ref={mapDiv} className="mapContainer"></div>
         </div>
     )
+
 };
