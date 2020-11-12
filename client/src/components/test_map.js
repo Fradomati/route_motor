@@ -59,8 +59,10 @@ export const Test_map = () => {
             }
             const mapBoxCoords = arrayOfArrays(result)
             console.log("Final COORDS:", mapBoxCoords)
+            const center = mapBoxCoords.pop()
+            console.log("Final COORDS without last element:", mapBoxCoords, center)
             // Pass the Coords to the preview map component 
-            setMapCoords(mapBoxCoords)
+            setMapCoords({ coordinates: mapBoxCoords, center: center })
 
             // Nothing
             setMap(result)
