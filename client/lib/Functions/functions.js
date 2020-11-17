@@ -9,35 +9,65 @@ U = %C3%9A
 Ñ = %C3%B1
  */
 
-const characters = (value) => {
+const swapCharacters = (value) => {
     switch (value) {
+        case '%C3%A1':
         case '%C3%81':
             console.log('A');
+            return "a";
             break;
         case '%C3%A9':
             console.log('E');
+            return "e";
             break;
         case '%C3%AD':
             console.log('I');
+            return "i";
             break;
         case '%C3%B3':
             console.log('O');
+            return "o";
             break;
         case '%C3%9A':
             console.log('U');
+            return "ñ";
             break;
         case '%C3%B1':
             console.log('Ñ');
+            return "n";
             break;
         default:
             console.log('No localizamos esta letra ' + value + '.');
     }
 }
 
-
-
-
 /* <---- EXPORT FUNCTIONS ----> */
+
+
+// Check special character of Coords
+export const checkCharacter = (value) => {
+    let strg = value
+    let result = ""
+
+    if (strg.includes("%C3%")) {
+        let index = strg.indexOf("%")
+        let character = strg.slice(index, index + 6)
+        let newCharacter = swapCharacters(character)
+
+        let arr = strg.split("")
+        arr.splice(index, 6, newCharacter)
+        console.log(arr)
+        arr.forEach(e => {
+            result = result + e
+        })
+
+    } else { result = value }
+    return result
+}
+
+
+
+
 
 // Get current age
 export const userAge = (birthday) => {
