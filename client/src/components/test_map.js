@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { getCoords } from "../services/Map_Service"
-import { urlToCoords, arrayOfArrays } from "../../lib/Functions/functions"
+import { urlToCoords, arrayOfArrays, checkCharacter } from "../../lib/Functions/functions"
 import { PreviewMaps } from "../components/preview_maps"
 
 
@@ -22,9 +22,8 @@ export const Test_map = () => {
         // Filtro cada elemento del Array y compruebo si son coordenadas o lugares, luego los paso a coordenadas y los
         // meto en el array de Coords
         await Promise.all(arr.map(async (e, index) => {
-
             // Check if "e" is number or places
-            if (parseInt(e.split("")[5]) >= 0) {
+            if (e.includes(".")) {
                 // Number
                 let coordPlace = ""
                 e.split(",").forEach(i => {
@@ -34,12 +33,16 @@ export const Test_map = () => {
 
                 return coordPlace
             } else {
+
+                // Check if "e" has a some special character and change it
+                const checkedWord = checkCharacter(e)
+
                 // Place
-                const response = await getCoords(e)
+                const response = await getCoords(checkedWord)
                 const place = response.data.features
                 let coordPlace = ""
-                place[0].center.forEach(e => {
-                    coordPlace == "" ? coordPlace = `${e},` : coordPlace = coordPlace + e
+                place[0].center.forEach(value => {
+                    coordPlace == "" ? coordPlace = `${value},` : coordPlace = coordPlace + value
                 })
 
                 return coordPlace

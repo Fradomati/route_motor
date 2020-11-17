@@ -23,7 +23,7 @@ export const PreviewMaps = (props) => {
         const map = new mapboxgl.Map({
             container: mapDiv.current,
             style: "mapbox://styles/mapbox/streets-v11",
-            zoom: 6,
+            zoom: 8,
             center: props.coords ? props.coords.center : [-3.7, 40.37]
         });
 
@@ -32,6 +32,7 @@ export const PreviewMaps = (props) => {
 
             let route = null
             getRoute(coords).then(res => {
+                console.log(res)
                 route = res?.data.routes[0].geometry.coordinates
                 console.log("route", route);
             });
@@ -60,7 +61,7 @@ export const PreviewMaps = (props) => {
                         "line-cap": "round"
                     },
                     paint: {
-                        "line-color": "red",
+                        "line-color": "black",
                         "line-width": 5,
                         "line-opacity": 0.85
                     }
