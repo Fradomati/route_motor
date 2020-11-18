@@ -11,6 +11,8 @@ import { Home } from "./pages/home/index"
 import { Login } from "./pages/auth/Login/index"
 import { Signup } from "./pages/auth/Signup/index"
 import { Profile } from "./pages/auth/Profile/index"
+//Calendar
+import { CalendarTimeline } from "./pages/calendar/timeline/index"
 
 // LIB
 import { withAuthentication } from "../lib/Authentication/withAuthentication"
@@ -28,6 +30,7 @@ export const App = withAuthentication(
                         <Route path="/login" exact component={Login} />
                         <Route path="/signup" exact component={Signup} />
                         <Route path="/profile" exact component={Profile} />
+                        <Route path="/calendar" exact component={CalendarTimeline} />
                     </Switch>
                 </Layout>
             </Router>

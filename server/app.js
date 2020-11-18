@@ -82,6 +82,11 @@ app.use('/', index);
 const auth = require("./routes/auth");
 app.use("/auth", auth);
 
+// Calendar Route
+
+const calendar = require("./routes/calendar");
+app.use("/calendar", calendar)
+
 
 
 module.exports = app;
