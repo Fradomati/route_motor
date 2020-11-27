@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useForm } from "react-hook-form"
-import { getCoords } from "../services/Map_Service"
-import { urlToCoords, arrayOfArrays, checkCharacter } from "../../lib/Functions/functions"
+import { getCoords } from "../../services/Map_Service"
+import { urlToCoords, arrayOfArrays, checkCharacter } from "../../../lib/Functions/functions"
 import { PreviewMaps } from "../components/preview_maps"
 
 
