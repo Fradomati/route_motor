@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
-import { getRoute } from "../services/Map_Service";
+import { getRoute } from "../../services/Map_Service";
 import { MapsEmbebed } from "./test_map"
 
 
