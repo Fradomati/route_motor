@@ -1,19 +1,31 @@
-import React from "react"
+import React, { useState } from "react"
 import { useForm } from "react-hook-form"
-import { urlToCoords, arrayOfArrays, checkCharacter } from "../../../lib/Functions/functions"
+import { urlToCoords, getDirectionsObj } from "../../../lib/Functions/functions"
 import { GoogleMapsPreview } from "./embed_maps"
 
 
 
 export const TestGoogeMapsView = (props) => {
 
+    const [coords, setCoords] = useState()
+
+    const { register, handleSubmit, errors } = useForm(
+        {
+            mode: "onSubmit"
+        }
+    );
 
 
     const filterURL = (data) => {
 
         const arrPlaces = urlToCoords(data.place)
         console.log(arrPlaces)
-        doCoords(arrPlaces)
+        // Remove the last element of arrPlaces because its the Center Coords
+        arrPlaces.pop()
+        // Get the object necessary to Google Maps Embed
+        const objDirections = getDirectionsObj(arrPlaces)
+        console.log(objDirections)
+        setCoords(objDirections)
 
     }
 
@@ -26,10 +38,8 @@ export const TestGoogeMapsView = (props) => {
                 })} />
                 <input type="submit" />
             </form>
-            {map && (<ul>{map.map((e, i) => {
-                return <li key={i}>{e}</li>
-            })}</ul>)}
-            <GoogleMapsPreview coords={mapCoords} />
+
+            <GoogleMapsPreview coords={coords} />
 
         </div>
     )
