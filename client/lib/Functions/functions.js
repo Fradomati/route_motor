@@ -112,3 +112,20 @@ export const arrayOfArrays = (array) => {
     return newArray
 }
 
+
+// Get Origin - Destination - Waypoints
+
+export const getDirectionsObj = (arr) => {
+    let arrCoords = arr
+    if (arrCoords.length > 2) {
+        const origin = arrCoords.shift()
+        const destination = arrCoords.pop()
+        const waypoints = arrCoords
+        return { origin: origin, destination: destination, waypoints: waypoints }
+    } else if (arrCoords.length == 2) {
+        return { origin: arrCoords[0], destination: arrCoords[1] }
+    } else if (arrCoords.length <= 1) {
+        return null
+    }
+
+}
