@@ -1,7 +1,8 @@
 import axios from "axios";
-axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*"
-axios.defaults.headers.get["Access-Control-Allow-Origin"] = "*"
+// axios.defaults.headers
 
+
+console.log("axios", axios.defaults)
 /* MAPBOX URL */
 
 // URL to do endpoint to mapbox and get coordinates of routes
@@ -42,6 +43,6 @@ export const apiGeocoding = axios.create({
 /* GOOGLE MAPS CONNECTION */
 
 export const apiGM_GetInfo = axios.create({
-    baseURL: `${urlGetInfoGM}json?`,
-    withCredentials: true
-})
+    baseURL: `${urlGetInfoGM}`,
+
+}, console.log(axios.defaults, "axios"))
