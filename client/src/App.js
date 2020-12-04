@@ -5,14 +5,17 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Layout } from "./interface/layout/index"
 
 // PAGES
-//Home
+// Home
 import { Home } from "./pages/home/index"
-//Auth
+// Auth
 import { Login } from "./pages/auth/Login/index"
 import { Signup } from "./pages/auth/Signup/index"
 import { Profile } from "./pages/auth/Profile/index"
-//Calendar
+// Calendar
 import { CalendarTimeline } from "./pages/calendar/timeline/index"
+
+// Routes
+import { AddRoute } from "./pages/route/addRoutes/index"
 
 // LIB
 import { withAuthentication } from "../lib/Authentication/withAuthentication"
@@ -31,6 +34,7 @@ export const App = withAuthentication(
                         <Route path="/signup" exact component={Signup} />
                         <Route path="/profile" exact component={Profile} />
                         <Route path="/calendar" exact component={CalendarTimeline} />
+                        <Route path="/addRoute" exact component={AddRoute} />
                     </Switch>
                 </Layout>
             </Router>

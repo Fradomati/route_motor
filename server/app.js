@@ -48,6 +48,8 @@ const corsOptions = {
     origin: true,
 };
 
+console.log(corsOptions)
+
 app.use(express.static(path.join(__dirname, "public")));
 // Middleware Setup
 app.use(cors(corsOptions));
@@ -71,6 +73,7 @@ app.use(
         store: new MongoStore({ mongooseConnection: mongoose.connection }),
     })
 );
+
 
 require("./passport/")(app);
 
