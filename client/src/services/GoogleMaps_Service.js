@@ -1,11 +1,5 @@
-/* 
-https://maps.googleapis.com/maps/api/directions/json?
-origin=Boston,MA&destination=Concord,MA
-&waypoints=via:Charlestown,MA|via:Lexington,MA &departure_time=now
-&key=YOUR_API_KEY
-*/
-
 import { apiGM_GetInfo } from "./Connections"
+import { getSumKLM, getSumDuration } from "../../lib/Functions/functions"
 
 export const getJSONRoute = async (obj) => {
     const { origin, destination, waypoints } = obj
@@ -15,5 +9,16 @@ export const getJSONRoute = async (obj) => {
     )
     console.log("Response", response)
 
+    const route = response.data.routes[0].legs
+    const arrDistances = route.map(e => {
+        return e.distance.value
+    })
+    const arrTiming = route.map(e => {
+        return e.duration.value
+    })
 
+    const totalDistance = getSumKLM(arrDistances)
+    const totalDuration = getSumDuration(arrTiming)
+
+    return { infoRoute: route, totalDistance: totalDistance, totalDuration: totalDuration }
 }

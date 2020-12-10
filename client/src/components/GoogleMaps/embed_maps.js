@@ -30,9 +30,12 @@ export const GoogleMapsPreview = (props) => {
 
         // Get info of Route
         if (origin) {
-            getJSONRoute({ origin: origin, destination: destination, waypoints: waypoints })
+            getJSONRoute({ origin: origin, destination: destination, waypoints: waypoints }).then(obj => {
+                console.log("info route:", obj)
+            })
 
         }
+
 
 
     }, [props])
