@@ -26,3 +26,4 @@ export const getCoords = async (place) => {
 
     return response
 }
+

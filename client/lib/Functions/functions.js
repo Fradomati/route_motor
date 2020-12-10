@@ -41,6 +41,7 @@ const swapCharacters = (value) => {
     }
 }
 
+
 /* <---- EXPORT FUNCTIONS ----> */
 
 
@@ -128,4 +129,42 @@ export const getDirectionsObj = (arr) => {
         return null
     }
 
+}
+
+
+// DISTANCE: Pass meters to kilometers ------------->
+
+// Pass individual distances to kilometers
+export const getKLM = (meters) => {
+    return meters / 1000
+}
+
+// Sum array of kilometers 
+export const getSumKLM = (arr) => {
+    let result = 0
+    arr.forEach(e => {
+        result = result + getKLM(e)
+    })
+    console.log("TOTAL KILOMETERS", result)
+    return result
+}
+
+// DURATION: Pass secs to mins --------------------->
+
+// Create Object {hour, mint, sec}
+export const fnMountTime = (secs) => {
+    let h = Math.floor(secs / 60 / 60);
+    let m = Math.floor(secs / 60) - h * 60;
+    let s = Math.floor(secs % 60);
+    const userTime = { hour: h, min: m, sec: s };
+    return userTime;
+};
+
+// Sum array of secs 
+export const getSumDuration = (arr) => {
+    let result = 0
+    arr.forEach(e => {
+        result = result + e
+    })
+    return fnMountTime(result)
 }
