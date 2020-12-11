@@ -50,6 +50,6 @@ export const GoogleMapsPreview = (props) => {
                 src={`${URLBase}${token}&origin=${origin}&destination=${destination}&waypoints=${waypoints}`}
             >
             </IFrame >)
-            : (<div>Loading</div>)
+            : (<div>Esperando Ruta...</div>)
     )
 }

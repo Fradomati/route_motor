@@ -17,19 +17,41 @@ font-size: 1.2em;
 color: black;
 `
 
-export const URLMapContainer = styled.div`
+export const URLMapContainer = styled.form`
 width: 100%;
 display: flex;
 justify-content: flex-start;
+margin-bottom: 3em;
 `
 export const URLInput = styled.input`
-background-color: grey;
+background-color: transparent;
+width: 50%;
+border: none;
+border-bottom: 2px solid black;
 `
-export const ButtonSend = styled.div`
+
+export const Submit = styled.input`
 padding: 0.5em;
 background-color: red;
+margin: 0 0.3em;
+width: 6.5em;
+border: none;
+border-radius: 5px;
+color: white;
+box-shadow: -1px 1px 2px 0px #1d1d1de3;
 `
+
 export const ButtonGM = styled.div`
 padding: 0.5em;
 background-color: green;
+margin: 0 0.3em;
+border: none;
+border-radius: 5px;
+color: white;
+box-shadow: -1px 1px 2px 0px #1d1d1de3;
+`
+
+export const MapContainer = styled.div`
+min-height: 50vh;
+width: 100%;
 `
