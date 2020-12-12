@@ -7,11 +7,20 @@ width: 100%;
 height: 100%;
 margin-top: 2%;
 `
-export const ChildContainer = styled.div`
+export const CenterContainer = styled.div`
 display: flex;
 justify-content: center;
 `
+export const LeftContainer = styled.div`
+display: flex;
+justify-content: start;
+`
 
-export const CenterContainer = styled.div`
+export const SpaceBetweenContainer = styled.div`
+display: flex;
+justify-content: space-between;
+`
+
+export const Container = styled.div`
 width: 95%;
 `

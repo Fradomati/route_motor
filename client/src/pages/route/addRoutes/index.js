@@ -1,11 +1,13 @@
 /* ------- ADD ROUTE PAGE ------- */
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { urlToCoords, getDirectionsObj } from "../../../../lib/Functions/functions"
 import { GoogleMapsPreview } from "../../../components/GoogleMaps/embed_maps"
+import { getJSONRoute } from "../../../services/GoogleMaps_Service"
+
 
 // Styles
-import { ParentContainer, ChildContainer, CenterContainer } from "../../global_styles"
+import { ParentContainer, CenterContainer, LeftContainer, SpaceBetweenContainer, Container } from "../../global_styles"
 import {
     TitleContainer,
     TitlePage,
@@ -15,13 +17,16 @@ import {
     URLInput,
     Submit,
     ButtonGM,
-    MapContainer
+    MapContainer,
+    DataContainer
 } from "./style"
 
 
 export const AddRoute = (props) => {
 
     const [coords, setCoords] = useState()
+    const [dataRoute, setDataRoute] = useState()
+
     const { register, handleSubmit } = useForm({
         mode: "onSubmit"
     })
@@ -39,11 +44,22 @@ export const AddRoute = (props) => {
 
     }
 
+    useEffect(() => {
+        // Get info of Route
+        if (coords) {
+            console.log("COORDS", coords)
+            getJSONRoute({ origin: coords.origin, destination: coords.destination, waypoints: coords.waypoints }).then(obj => {
+                console.log("info route:", obj)
+                setDataRoute(obj)
+            })
+
+        }
+    }, [coords])
+
     return (
         <ParentContainer>
-            <ChildContainer>
-
-                <CenterContainer>
+            <CenterContainer>
+                <Container>
                     <TitleContainer>
                         <TitlePage>Añadir Nueva Ruta</TitlePage>
                     </TitleContainer>
@@ -55,15 +71,38 @@ export const AddRoute = (props) => {
                             })} /><Submit type="submit" /><ButtonGM>Ir a Google Maps</ButtonGM>
                         </URLMapContainer>
                     </AddURLContainer>
-                </CenterContainer>
-            </ChildContainer>
-            <ChildContainer>
-                <CenterContainer>
-                    <MapContainer>
-                        <GoogleMapsPreview coords={coords} />
-                    </MapContainer>
-                </CenterContainer>
-            </ChildContainer>
+                </Container>
+            </CenterContainer>
+            {coords
+                ? (
+                    <>
+                        <SpaceBetweenContainer>
+                            <DataContainer>
+                                {dataRoute
+                                    ? (
+                                        <ul>
+                                            <li>Distancia: {Math.floor(dataRoute.totalDistance)} km</li>
+                                            <li>Duración: {dataRoute.totalDuration.hour}h:{dataRoute.totalDuration.min}m</li>
+                                            <li>Localidad</li>
+                                            <li>Tipo de Motos</li>
+                                            <li>Permiso Mínimo</li>
+                                            <li>Estilo de Ruta</li>
+                                            <li>Nivel</li>
+                                            <li>Punto de Salida Recomendado</li>
+                                        </ul>
+                                    )
+                                    : <p>Cargando Datos...</p>}
+                            </DataContainer>
+                            <MapContainer>
+                                <GoogleMapsPreview coords={coords} />
+                            </MapContainer>
+                        </SpaceBetweenContainer>
+                        <LeftContainer>
+                            Description
+                    </LeftContainer>
+                    </>
+                )
+                : (<div>Holi</div>)}
         </ParentContainer>
     )
 }
