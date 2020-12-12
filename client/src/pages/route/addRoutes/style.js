@@ -52,6 +52,10 @@ box-shadow: -1px 1px 2px 0px #1d1d1de3;
 `
 
 export const MapContainer = styled.div`
-min-height: 50vh;
-width: 100%;
+width: 80%;
+margin: 1em
+`
+export const DataContainer = styled.div`
+width: 80%;
+margin: 1em
 `

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import { getJSONRoute } from "../../services/GoogleMaps_Service"
 
 // Styles
 import { IFrame } from "./style"
@@ -28,13 +27,7 @@ export const GoogleMapsPreview = (props) => {
             }
         }
 
-        // Get info of Route
-        if (origin) {
-            getJSONRoute({ origin: origin, destination: destination, waypoints: waypoints }).then(obj => {
-                console.log("info route:", obj)
-            })
 
-        }
 
 
 
