@@ -168,3 +168,10 @@ export const getSumDuration = (arr) => {
     })
     return fnMountTime(result)
 }
+
+// LOCATION: Get "localidad" of address ----------->
+
+export const getLocality = (str) => {
+    const arr = str.split(",")
+    return arr[1]
+}
