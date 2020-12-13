@@ -13,12 +13,14 @@ import {
     TitlePage,
     AddURLContainer,
     TitleRoute,
-    URLMapContainer,
+    URLMapForm,
     URLInput,
     Submit,
     ButtonGM,
     MapContainer,
-    DataContainer
+    DataContainer,
+    RouteDataForm,
+    DataInput
 } from "./style"
 
 
@@ -44,6 +46,10 @@ export const AddRoute = (props) => {
 
     }
 
+    const createRoute = (data) => {
+        console.log("Route Added", data)
+    }
+
     useEffect(() => {
         // Get info of Route
         if (coords) {
@@ -65,31 +71,45 @@ export const AddRoute = (props) => {
                     </TitleContainer>
                     <AddURLContainer>
                         <TitleRoute>Título</TitleRoute>
-                        <URLMapContainer onSubmit={handleSubmit(filterURL)}>
+                        <URLMapForm onSubmit={handleSubmit(filterURL)}>
                             <URLInput type="text" name="place" ref={register({
                                 required: false
                             })} /><Submit type="submit" /><ButtonGM>Ir a Google Maps</ButtonGM>
-                        </URLMapContainer>
+                        </URLMapForm>
                     </AddURLContainer>
                 </Container>
             </CenterContainer>
             {coords
                 ? (
-                    <>
+                    <RouteDataForm>
                         <SpaceBetweenContainer>
                             <DataContainer>
                                 {dataRoute
                                     ? (
+
                                         <ul>
-                                            <li>Distancia: {Math.floor(dataRoute.totalDistance)} km</li>
-                                            <li>Duración: {dataRoute.totalDuration.hour}h:{dataRoute.totalDuration.min}m</li>
-                                            <li>Localidad</li>
+                                            <li>Distancia:</li>
+                                            <DataInput type="text" name="distance" value={Math.floor(dataRoute.totalDistance)} ref={register({
+                                                required: false
+                                            })} />
+                                            <li>Duración:</li>
+                                            <DataInput type="text" name="distance" value={`${dataRoute.totalDuration.hour}h:${dataRoute.totalDuration.min}m`} ref={register({
+                                                required: false
+                                            })} />
+                                            <li>Localidad:</li>
+                                            <DataInput type="text" name="distance" value={dataRoute.locality} ref={register({
+                                                required: false
+                                            })} />
                                             <li>Tipo de Motos</li>
                                             <li>Permiso Mínimo</li>
                                             <li>Estilo de Ruta</li>
                                             <li>Nivel</li>
-                                            <li>Punto de Salida Recomendado</li>
+                                            <li>Punto de Salida Recomendado:</li>
+                                            <DataInput type="text" name="distance" value={dataRoute.startPoint} ref={register({
+                                                required: false
+                                            })} />
                                         </ul>
+
                                     )
                                     : <p>Cargando Datos...</p>}
                             </DataContainer>
@@ -99,8 +119,8 @@ export const AddRoute = (props) => {
                         </SpaceBetweenContainer>
                         <LeftContainer>
                             Description
-                    </LeftContainer>
-                    </>
+                        </LeftContainer>
+                    </RouteDataForm>
                 )
                 : (<div>Holi</div>)}
         </ParentContainer>

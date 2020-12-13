@@ -1,10 +1,18 @@
 import { apiGM_GetInfo } from "./Connections"
-import { getSumKLM, getSumDuration } from "../../lib/Functions/functions"
+import { getSumKLM, getSumDuration, getLocality } from "../../lib/Functions/functions"
 
 export const getJSONRoute = async (obj) => {
     const { origin, destination, waypoints } = obj
+
+    // Pass waypoints to necesary format
+    let strWaypoints = ""
+
+    waypoints.forEach(e => {
+        strWaypoints == "" ? strWaypoints = e : strWaypoints = strWaypoints + "|" + e
+    })
+
     const response = await apiGM_GetInfo.get(
-        `json?origin=${origin}&destination=${destination}&waypoints=${waypoints}&key=${process.env.TOKEN_GEO_GOOGLEMAPS}`, {
+        `json?origin=${origin}&destination=${destination}&waypoints=${strWaypoints}&key=${process.env.TOKEN_GEO_GOOGLEMAPS}`, {
     }
     )
     console.log("Response", response)
@@ -19,6 +27,15 @@ export const getJSONRoute = async (obj) => {
 
     const totalDistance = getSumKLM(arrDistances)
     const totalDuration = getSumDuration(arrTiming)
+    const startPoint = route[0].start_address
+    const locality = getLocality(startPoint)
+    console.log("Localidad", locality)
 
-    return { infoRoute: route, totalDistance: totalDistance, totalDuration: totalDuration }
+    return {
+        infoRoute: route,
+        totalDistance: totalDistance,
+        totalDuration: totalDuration,
+        startPoint: startPoint,
+        locality: locality
+    }
 }

@@ -17,7 +17,7 @@ font-size: 1.2em;
 color: black;
 `
 
-export const URLMapContainer = styled.form`
+export const URLMapForm = styled.form`
 width: 100%;
 display: flex;
 justify-content: flex-start;
@@ -58,4 +58,13 @@ margin: 1em
 export const DataContainer = styled.div`
 width: 80%;
 margin: 1em
+`
+export const RouteDataForm = styled.form`
+width: 100%;
+`
+export const DataInput = styled.input`
+background-color: transparent;
+width: 50%;
+border: none;
+border-bottom: 2px solid black;
 `
