@@ -64,7 +64,31 @@ width: 100%;
 `
 export const DataInput = styled.input`
 background-color: transparent;
-width: 50%;
+width: 100%;
 border: none;
-border-bottom: 2px solid black;
+color: #D32F2F;
+margin-bottom: 0.5em;
+margin-top: 0.5em;
+font-weight: 900;
+&:focus{
+    outline: none;
+    border-bottom: 1px solid #80808036;
+    font-size: 0.8em;
+    color: #ca5d5d;
+}
+`
+export const HighText = styled.p`
+font-size: 0.9em;
+color: grey
+`
+export const Select = styled.select`
+color: #D32F2F;
+font-weight: bold;
+border: none;
+margin: 0.5em 0;
+&:focus{
+    outline: none;
+    font-size: 0.8em;
+    color: #ca5d5d;
+}
 `
