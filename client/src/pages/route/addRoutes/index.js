@@ -20,7 +20,9 @@ import {
     MapContainer,
     DataContainer,
     RouteDataForm,
-    DataInput
+    DataInput,
+    HighText,
+    Select
 } from "./style"
 
 
@@ -88,26 +90,48 @@ export const AddRoute = (props) => {
                                     ? (
 
                                         <ul>
-                                            <li>Distancia:</li>
-                                            <DataInput type="text" name="distance" value={Math.floor(dataRoute.totalDistance)} ref={register({
-                                                required: false
-                                            })} />
-                                            <li>Duración:</li>
-                                            <DataInput type="text" name="distance" value={`${dataRoute.totalDuration.hour}h:${dataRoute.totalDuration.min}m`} ref={register({
-                                                required: false
-                                            })} />
-                                            <li>Localidad:</li>
-                                            <DataInput type="text" name="distance" value={dataRoute.locality} ref={register({
-                                                required: false
-                                            })} />
-                                            <li>Tipo de Motos</li>
-                                            <li>Permiso Mínimo</li>
-                                            <li>Estilo de Ruta</li>
-                                            <li>Nivel</li>
-                                            <li>Punto de Salida Recomendado:</li>
-                                            <DataInput type="text" name="distance" value={dataRoute.startPoint} ref={register({
-                                                required: false
-                                            })} />
+                                            <li><HighText>Distancia</HighText>
+                                                <DataInput type="text" name="distance" value={`${Math.floor(dataRoute.totalDistance)}`} ref={register({
+                                                    required: false
+                                                })} />
+                                            </li>
+                                            <li><HighText>Duración</HighText>
+                                                <DataInput type="text" name="distance" value={`${dataRoute.totalDuration.hour}h:${dataRoute.totalDuration.min}m`} ref={register({
+                                                    required: false
+                                                })} />
+                                            </li>
+                                            <li><HighText>Localidad</HighText>
+                                                <DataInput type="text" name="distance" value={dataRoute.locality} ref={register({
+                                                    required: false
+                                                })} />
+                                            </li>
+                                            <li><HighText>Tipo de Motos</HighText>
+                                                <DataInput type="text" name="distance" value={dataRoute.startPoint} ref={register({
+                                                    required: false
+                                                })} />
+                                            </li>
+                                            <li><HighText>Permiso Mínimo</HighText>
+                                                <DataInput type="text" name="distance" value={dataRoute.startPoint} ref={register({
+                                                    required: false
+                                                })} />
+                                            </li>
+                                            <li><HighText>Estilo de Ruta</HighText>
+                                                <DataInput type="text" name="distance" value={dataRoute.startPoint} ref={register({
+                                                    required: false
+                                                })} />
+                                            </li>
+                                            <li><HighText>Dificultad</HighText>
+                                                <Select name="Title" ref={register({ required: true })}>
+                                                    <option value="easy">Fácil</option>
+                                                    <option value="medium">Normal</option>
+                                                    <option value="hard">Difícil</option>
+                                                </Select>
+                                            </li>
+                                            <li><HighText>Punto de Salida Recomendado</HighText>
+                                                <DataInput type="text" name="distance" value={dataRoute.startPoint} ref={register({
+                                                    required: false
+                                                })} />
+                                            </li>
                                         </ul>
 
                                     )
@@ -120,6 +144,7 @@ export const AddRoute = (props) => {
                         <LeftContainer>
                             Description
                         </LeftContainer>
+                        <div>Agregar Ruta</div>
                     </RouteDataForm>
                 )
                 : (<div>Holi</div>)}
