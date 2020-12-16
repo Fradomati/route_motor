@@ -66,7 +66,7 @@ export const DataInput = styled.input`
 background-color: transparent;
 width: 100%;
 border: none;
-color: #D32F2F;
+color: black;
 margin-bottom: 0.5em;
 margin-top: 0.5em;
 font-weight: 900;
@@ -82,7 +82,7 @@ font-size: 0.9em;
 color: grey
 `
 export const Select = styled.select`
-color: #D32F2F;
+color: black;
 font-weight: bold;
 border: none;
 margin: 0.5em 0;

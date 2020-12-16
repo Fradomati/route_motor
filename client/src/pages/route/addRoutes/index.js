@@ -1,6 +1,7 @@
 /* ------- ADD ROUTE PAGE ------- */
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, } from "react"
 import { useForm } from "react-hook-form"
+import ReactQuill from "react-quill"
 import { urlToCoords, getDirectionsObj } from "../../../../lib/Functions/functions"
 import { GoogleMapsPreview } from "../../../components/GoogleMaps/embed_maps"
 import { getJSONRoute } from "../../../services/GoogleMaps_Service"
@@ -30,6 +31,7 @@ export const AddRoute = (props) => {
 
     const [coords, setCoords] = useState()
     const [dataRoute, setDataRoute] = useState()
+    const [description, setDescription] = useState()
 
     const { register, handleSubmit } = useForm({
         mode: "onSubmit"
@@ -51,6 +53,15 @@ export const AddRoute = (props) => {
     const createRoute = (data) => {
         console.log("Route Added", data)
     }
+
+
+
+
+    // const onChange = editorState => {
+    //     setEditorState({ editorState })
+    //     // setDescription(value.toString("html"))
+    // }
+
 
     useEffect(() => {
         // Get info of Route
@@ -101,22 +112,17 @@ export const AddRoute = (props) => {
                                                 })} />
                                             </li>
                                             <li><HighText>Localidad</HighText>
-                                                <DataInput type="text" name="distance" value={dataRoute.locality} ref={register({
+                                                <DataInput type="text" name="distance" defaultValue={dataRoute.locality} ref={register({
                                                     required: false
                                                 })} />
                                             </li>
                                             <li><HighText>Tipo de Motos</HighText>
-                                                <DataInput type="text" name="distance" value={dataRoute.startPoint} ref={register({
-                                                    required: false
-                                                })} />
-                                            </li>
-                                            <li><HighText>Permiso Mínimo</HighText>
-                                                <DataInput type="text" name="distance" value={dataRoute.startPoint} ref={register({
+                                                <DataInput type="text" name="distance" defaultValue={dataRoute.startPoint} ref={register({
                                                     required: false
                                                 })} />
                                             </li>
                                             <li><HighText>Estilo de Ruta</HighText>
-                                                <DataInput type="text" name="distance" value={dataRoute.startPoint} ref={register({
+                                                <DataInput type="text" name="distance" defaultValue={dataRoute.startPoint} ref={register({
                                                     required: false
                                                 })} />
                                             </li>
@@ -128,7 +134,7 @@ export const AddRoute = (props) => {
                                                 </Select>
                                             </li>
                                             <li><HighText>Punto de Salida Recomendado</HighText>
-                                                <DataInput type="text" name="distance" value={dataRoute.startPoint} ref={register({
+                                                <DataInput type="text" name="distance" defaultValue={dataRoute.startPoint} ref={register({
                                                     required: false
                                                 })} />
                                             </li>
@@ -142,12 +148,13 @@ export const AddRoute = (props) => {
                             </MapContainer>
                         </SpaceBetweenContainer>
                         <LeftContainer>
-                            Description
+                            Descripción
+                            <ReactQuill value={description} onChange={setDescription} />
                         </LeftContainer>
                         <div>Agregar Ruta</div>
                     </RouteDataForm>
                 )
                 : (<div>Holi</div>)}
-        </ParentContainer>
+        </ParentContainer >
     )
 }
