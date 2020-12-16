@@ -1,10 +1,10 @@
 /* ------- ADD ROUTE PAGE ------- */
-import React, { useState, useEffect, } from "react"
+import React, { useState, useEffect, useMemo } from "react"
 import { useForm } from "react-hook-form"
-import ReactQuill from "react-quill"
 import { urlToCoords, getDirectionsObj } from "../../../../lib/Functions/functions"
 import { GoogleMapsPreview } from "../../../components/GoogleMaps/embed_maps"
 import { getJSONRoute } from "../../../services/GoogleMaps_Service"
+import { DescriptionText } from "../../../components/RichTextArea/index"
 
 
 // Styles
@@ -31,7 +31,6 @@ export const AddRoute = (props) => {
 
     const [coords, setCoords] = useState()
     const [dataRoute, setDataRoute] = useState()
-    const [description, setDescription] = useState()
 
     const { register, handleSubmit } = useForm({
         mode: "onSubmit"
@@ -54,13 +53,6 @@ export const AddRoute = (props) => {
         console.log("Route Added", data)
     }
 
-
-
-
-    // const onChange = editorState => {
-    //     setEditorState({ editorState })
-    //     // setDescription(value.toString("html"))
-    // }
 
 
     useEffect(() => {
@@ -148,8 +140,7 @@ export const AddRoute = (props) => {
                             </MapContainer>
                         </SpaceBetweenContainer>
                         <LeftContainer>
-                            Descripción
-                            <ReactQuill value={description} onChange={setDescription} />
+                            <DescriptionText />
                         </LeftContainer>
                         <div>Agregar Ruta</div>
                     </RouteDataForm>
