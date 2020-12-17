@@ -31,7 +31,7 @@ export const AddRoute = (props) => {
 
     const [coords, setCoords] = useState()
     const [dataRoute, setDataRoute] = useState()
-
+    const [description, setDescription] = useState("Nothing")
     const { register, handleSubmit } = useForm({
         mode: "onSubmit"
     })
@@ -140,7 +140,7 @@ export const AddRoute = (props) => {
                             </MapContainer>
                         </SpaceBetweenContainer>
                         <LeftContainer>
-                            <DescriptionText />
+                            <DescriptionText value={description, setDescription} />
                         </LeftContainer>
                         <div>Agregar Ruta</div>
                     </RouteDataForm>

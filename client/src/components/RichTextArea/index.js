@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Editor, EditorState, RichUtils } from "draft-js"
+import { stateToHTML } from "draft-js-export-html"
 import "../../../node_modules/draft-js/dist/Draft.css"
 
 export const DescriptionText = (props) => {
@@ -15,12 +16,13 @@ export const DescriptionText = (props) => {
         return "no-handled"
     }
 
+    console.log(props, "props")
     const editor = useRef(null)
 
     useEffect(() => {
         editor.current.focus()
-        console.log(editor, "HSDASD")
-        console.log("Editor.current.focus", editor.current.focus())
+        const contentState = editorState.getCurrentContent()
+        console.log("Get Current Content", stateToHTML(contentState))
     }, [editorState])
 
     return (
