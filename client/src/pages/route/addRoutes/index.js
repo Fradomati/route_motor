@@ -53,7 +53,7 @@ export const AddRoute = (props) => {
         console.log("Route Added", data)
     }
 
-
+    useEffect(() => { console.log("Parent Description", description), [description] })
 
     useEffect(() => {
         // Get info of Route
@@ -140,7 +140,7 @@ export const AddRoute = (props) => {
                             </MapContainer>
                         </SpaceBetweenContainer>
                         <LeftContainer>
-                            <DescriptionText value={description, setDescription} />
+                            <DescriptionText setDescription={setDescription} />
                         </LeftContainer>
                         <div>Agregar Ruta</div>
                     </RouteDataForm>
