@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Editor, EditorState, RichUtils } from "draft-js"
 import { stateToHTML } from "draft-js-export-html"
-import "../../../node_modules/draft-js/dist/Draft.css"
+
+// Styles
+import "draft-js/dist/Draft.css"
+import { EditorContainer } from "./style"
 
 export const DescriptionText = (props) => {
+
 
     const [editorState, setEditorState] = useState(EditorState.createEmpty())
     const handleKeyCommand = (command) => {
@@ -16,17 +20,17 @@ export const DescriptionText = (props) => {
         return "no-handled"
     }
 
-    console.log(props, "props")
-    const editor = useRef(null)
 
+    const editor = useRef(null)
     useEffect(() => {
         editor.current.focus()
         const contentState = editorState.getCurrentContent()
         console.log("Get Current Content", stateToHTML(contentState))
+        props.setDescription(stateToHTML(contentState))
     }, [editorState])
 
     return (
-        <div className="editorContainer" onClick={() => editor.current.focus()}>
+        <EditorContainer className="editorContainer" onClick={() => editor.current.focus()}>
             <div className="editorButtons">
                 <div>
                     <button type="button" onClick={() => setEditorState(RichUtils.toggleInlineStyle(editorState, 'UNDERLINE'))} ><u>U</u></button>
@@ -48,6 +52,6 @@ export const DescriptionText = (props) => {
                     onChange={editorState => setEditorState(editorState)}
                 />
             </div>
-        </div>
+        </EditorContainer>
     )
 }

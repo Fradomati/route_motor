@@ -78,3 +78,21 @@ table {
 	width: 100vw;
 	height: 100vh;
   }
+
+/* Rich Style View Style */
+
+.editor h1{
+	font-size: 1.7em;
+}
+
+.editor h2{
+	font-size: 1.5em;
+}
+
+.editor h3{
+	font-size: 1.1em;
+}
+
+.editor h4{
+	font-size: 0.8em;
+}
