@@ -8,8 +8,8 @@ import { EditorContainer } from "./style"
 
 export const DescriptionText = (props) => {
 
-
     const [editorState, setEditorState] = useState(EditorState.createEmpty())
+
     const handleKeyCommand = (command) => {
         const newState = RichUtils.handleKeyCommand(editorState, command)
         if (newState) {
@@ -23,11 +23,17 @@ export const DescriptionText = (props) => {
 
     const editor = useRef(null)
     useEffect(() => {
-        editor.current.focus()
+        console.log("FOCUS", editor.current)
         const contentState = editorState.getCurrentContent()
         console.log("Get Current Content", stateToHTML(contentState))
         props.setDescription(stateToHTML(contentState))
     }, [editorState])
+
+
+
+    const onChange = value => {
+        setEditorState(value)
+    }
 
     return (
         <EditorContainer className="editorContainer" onClick={() => editor.current.focus()}>
@@ -49,7 +55,9 @@ export const DescriptionText = (props) => {
                     placeholder={"Escribe aquí man"}
                     handleKeyCommand={handleKeyCommand}
                     editorState={editorState}
-                    onChange={editorState => setEditorState(editorState)}
+                    onChange={editorState => {
+                        onChange(editorState)
+                    }}
                 />
             </div>
         </EditorContainer>
