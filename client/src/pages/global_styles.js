@@ -6,6 +6,7 @@ export const ParentContainer = styled.div`
 width: 100%;
 height: 100%;
 margin-top: 2%;
+margin-bottom: 30vh;
 `
 export const CenterContainer = styled.div`
 display: flex;

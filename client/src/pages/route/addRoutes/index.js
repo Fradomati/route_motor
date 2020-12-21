@@ -5,6 +5,7 @@ import { urlToCoords, getDirectionsObj } from "../../../../lib/Functions/functio
 import { GoogleMapsPreview } from "../../../components/GoogleMaps/embed_maps"
 import { getJSONRoute } from "../../../services/GoogleMaps_Service"
 import { DescriptionText } from "../../../components/RichTextArea/index"
+import { TextRichDescription } from "../../../components/RichTextArea/index-quill.js"
 
 
 // Styles
@@ -140,7 +141,7 @@ export const AddRoute = (props) => {
                             </MapContainer>
                         </SpaceBetweenContainer>
                         <LeftContainer>
-                            <DescriptionText setDescription={setDescription} />
+                            <TextRichDescription setDescription={setDescription} />
                         </LeftContainer>
                         <div>Agregar Ruta</div>
                     </RouteDataForm>
