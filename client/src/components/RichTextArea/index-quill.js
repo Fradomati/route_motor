@@ -2,11 +2,31 @@ import React, { useState, useEffect, useRef } from "react"
 import { useQuill } from "react-quilljs"
 import "quill/dist/quill.snow.css"
 
+// Styles
+import { EditorContainerQuill } from "./style"
 
 export const TextRichDescription = (props) => {
-    const { quill, quillRef } = useQuill()
-    console.log("Quill", quill)
-    console.log("QuillRef", quillRef)
+    const modules = {
+        toolbar: [
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ align: [] }],
+
+            [{ list: 'ordered' }, { list: 'bullet' }],
+            [{ indent: '-1' }, { indent: '+1' }],
+
+            [{ size: ['small', false, 'large', 'huge'] }],
+            [{ header: [1, 2, 3, 4, 5, 6, false] }],
+            ['link'],
+            [{ color: [] }, { background: [] }],
+
+            ['clean'],
+        ],
+        clipboard: {
+            matchVisual: false,
+        },
+    }
+
+    const { quill, quillRef } = useQuill({ modules })
 
     useEffect(() => {
         if (quill) {
@@ -18,8 +38,8 @@ export const TextRichDescription = (props) => {
 
 
     return (
-        <div style={{ width: 500, height: 300 }}>
+        <EditorContainerQuill >
             <div ref={quillRef} />
-        </div>
+        </EditorContainerQuill>
     )
 }

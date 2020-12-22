@@ -30,15 +30,19 @@ border: none;
 border-bottom: 2px solid black;
 `
 
-export const Submit = styled.input`
+export const ButtonSubmit = styled.input`
 padding: 0.5em;
-background-color: red;
+background-color: #D32F2F;
 margin: 0 0.3em;
 width: 6.5em;
 border: none;
 border-radius: 5px;
 color: white;
 box-shadow: -1px 1px 2px 0px #1d1d1de3;
+cursor: pointer;
+&:hover{
+    background-color: #F44336
+}
 `
 
 export const ButtonGM = styled.div`
@@ -49,6 +53,8 @@ border: none;
 border-radius: 5px;
 color: white;
 box-shadow: -1px 1px 2px 0px #1d1d1de3;
+cursor: pointer;
+
 `
 
 export const MapContainer = styled.div`
@@ -90,5 +96,19 @@ margin: 0.5em 0;
     outline: none;
     font-size: 0.8em;
     color: #ca5d5d;
+}
+`
+export const ButtonAdd = styled.input`
+background-color: #D32F2F;
+padding: 0.8em;
+margin-right: 2em;
+color: white;
+font-size: 1em;
+border: none;
+border-radius: 5px;
+box-shadow: -1px 1px 2px 0px #1d1d1de3;
+cursor: pointer;
+&:hover{
+    background-color: #F44336
 }
 `
