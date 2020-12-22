@@ -16,6 +16,10 @@ export const LeftContainer = styled.div`
 display: flex;
 justify-content: start;
 `
+export const RightContainer = styled.div`
+display: flex;
+justify-content: flex-end;
+`
 
 export const SpaceBetweenContainer = styled.div`
 display: flex;

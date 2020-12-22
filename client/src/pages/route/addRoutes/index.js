@@ -4,12 +4,11 @@ import { useForm } from "react-hook-form"
 import { urlToCoords, getDirectionsObj } from "../../../../lib/Functions/functions"
 import { GoogleMapsPreview } from "../../../components/GoogleMaps/embed_maps"
 import { getJSONRoute } from "../../../services/GoogleMaps_Service"
-import { DescriptionText } from "../../../components/RichTextArea/index"
 import { TextRichDescription } from "../../../components/RichTextArea/index-quill.js"
 
 
 // Styles
-import { ParentContainer, CenterContainer, LeftContainer, SpaceBetweenContainer, Container } from "../../global_styles"
+import { ParentContainer, CenterContainer, LeftContainer, RightContainer, SpaceBetweenContainer, Container } from "../../global_styles"
 import {
     TitleContainer,
     TitlePage,
@@ -17,14 +16,15 @@ import {
     TitleRoute,
     URLMapForm,
     URLInput,
-    Submit,
+    ButtonSubmit,
     ButtonGM,
+    ButtonAdd,
     MapContainer,
     DataContainer,
     RouteDataForm,
     DataInput,
     HighText,
-    Select
+    Select,
 } from "./style"
 
 
@@ -80,7 +80,7 @@ export const AddRoute = (props) => {
                         <URLMapForm onSubmit={handleSubmit(filterURL)}>
                             <URLInput type="text" name="place" ref={register({
                                 required: false
-                            })} /><Submit type="submit" /><ButtonGM>Ir a Google Maps</ButtonGM>
+                            })} /><ButtonSubmit type="submit" /><ButtonGM>Ir a Google Maps</ButtonGM>
                         </URLMapForm>
                     </AddURLContainer>
                 </Container>
@@ -143,7 +143,9 @@ export const AddRoute = (props) => {
                         <LeftContainer>
                             <TextRichDescription setDescription={setDescription} />
                         </LeftContainer>
-                        <div>Agregar Ruta</div>
+                        <RightContainer>
+                            <ButtonAdd type="submit" value="Agregar Ruta" />
+                        </RightContainer>
                     </RouteDataForm>
                 )
                 : (<div>Holi</div>)}
