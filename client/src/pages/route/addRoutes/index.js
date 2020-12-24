@@ -1,5 +1,7 @@
 /* ------- ADD ROUTE PAGE ------- */
 import React, { useState, useEffect, useMemo } from "react"
+import { Link } from "react-router-dom"
+import { withRouter } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { urlToCoords, getDirectionsObj } from "../../../../lib/Functions/functions"
 import { GoogleMapsPreview } from "../../../components/GoogleMaps/embed_maps"
@@ -28,7 +30,7 @@ import {
 } from "./style"
 
 
-export const AddRoute = (props) => {
+export const AddRoute = withRouter(({ history }, props) => {
 
     const [coords, setCoords] = useState()
     const [dataRoute, setDataRoute] = useState()
@@ -50,6 +52,11 @@ export const AddRoute = (props) => {
 
     }
 
+    const addNewRoute = () => {
+        console.log("bye!")
+        location.reload()
+    }
+
     const createRoute = (data) => {
         console.log("Route Added", data)
     }
@@ -69,22 +76,38 @@ export const AddRoute = (props) => {
     }, [coords])
 
     return (
+
         <ParentContainer>
-            <CenterContainer>
-                <Container>
-                    <TitleContainer>
-                        <TitlePage>Añadir Nueva Ruta</TitlePage>
-                    </TitleContainer>
-                    <AddURLContainer>
-                        <TitleRoute>Título</TitleRoute>
-                        <URLMapForm onSubmit={handleSubmit(filterURL)}>
-                            <URLInput type="text" name="place" ref={register({
-                                required: false
-                            })} /><ButtonSubmit type="submit" /><ButtonGM>Ir a Google Maps</ButtonGM>
-                        </URLMapForm>
-                    </AddURLContainer>
-                </Container>
-            </CenterContainer>
+            {!coords ? (
+                <CenterContainer>
+                    <Container>
+                        <TitleContainer>
+                            <TitlePage>Añadir Nueva Ruta</TitlePage>
+                        </TitleContainer>
+                        <AddURLContainer>
+                            <TitleRoute>Introduce URL de Google Maps:</TitleRoute>
+                            <URLMapForm onSubmit={handleSubmit(filterURL)}>
+                                <URLInput type="text" name="place" ref={register({
+                                    required: false
+                                })} /><ButtonSubmit type="submit" /><ButtonGM>Ir a Google Maps</ButtonGM>
+                            </URLMapForm>
+                        </AddURLContainer>
+                    </Container>
+                </CenterContainer>
+            ) : (
+                    <CenterContainer>
+                        <Container>
+                            <TitleContainer>
+                                <TitlePage>Añadir Nueva Ruta</TitlePage>
+                            </TitleContainer>
+                            <AddURLContainer>
+                                <button type="button" onClick={() => addNewRoute()}>Volver</button>
+                            </AddURLContainer>
+                            <TitleRoute>Título</TitleRoute>
+                        </Container>
+                    </CenterContainer>
+                )
+            }
             {coords
                 ? (
                     <RouteDataForm>
@@ -151,4 +174,4 @@ export const AddRoute = (props) => {
                 : (<div>Holi</div>)}
         </ParentContainer >
     )
-}
+})
